@@ -11,14 +11,18 @@ def index():
     posts = db.query(Post).order_by(Post.created_at.desc()).all()
 
     return render_template(
-  'homepage.html',
-  posts=posts,
-  loggedIn=session.get('loggedIn')
-)
+      'homepage.html',
+      posts=posts,
+      loggedIn=session.get('loggedIn')
+    )
 
 @bp.route('/login')
 def login():
+  # not logged in yet
+  if session.get('loggedIn') is None:
     return render_template('login.html')
+
+  return redirect('/dashboard')
 
 @bp.route('/post/<id>')
 def single(id):
