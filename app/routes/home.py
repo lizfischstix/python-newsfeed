@@ -36,3 +36,4 @@ def single(id):
   post=post,
   loggedIn=session.get('loggedIn')
 )
+
